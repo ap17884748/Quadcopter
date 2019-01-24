@@ -82,19 +82,19 @@ uint8_t I2CRead(uint8_t MPU_Adr,uint8_t INDEX)
 void Init_MPU6050()
 {
 	//I2CWrite_MPU6050(PWR_MGMT_1, 0x80);
-	I2CWrite(I2C_ADDR,PWR_MGMT_1, 0x00);// PWR_MGMT_1 MPU9250¹q·½ºŞ²z±H¦s¾¹¸Ñ°£¥ğ¯v
+	I2CWrite(I2C_ADDR,PWR_MGMT_1, 0x00);// PWR_MGMT_1 MPU9250é›»æºç®¡ç†å¯„å­˜å™¨è§£é™¤ä¼‘çœ 
 	DrvSYS_Delay(335000);
 	i2c_dev = I2CRead(I2C_ADDR,EXT_SENS_DATA_00);//These Reg store data read from external sensors by the Slave 0
 	if(i2c_dev==0x71)
 	{
 		DrvSYS_Delay(335000);
-		I2CWrite(I2C_ADDR,PWR_MGMT_2, 0x00);//¨Ï¯à±H¦s¥[³t«×X,Y,Z¥[³t«×
-		I2CWrite(I2C_ADDR,SMPLRT_DIV, 0x07);//SMPLRT_DIV ±Ä¼Ë²v¤ÀÀW±H¦s¾¹,¿é¤J±Ä¼Ë®ÉÄÁ¬°SMPLRT_DIV kHz,1000/(SMPLRT_DIV+1)
-		I2CWrite(I2C_ADDR,USER_CTRL, 0x00);// ªì©l¤ÆI2C
+		I2CWrite(I2C_ADDR,PWR_MGMT_2, 0x00);//ä½¿èƒ½å¯„å­˜åŠ é€Ÿåº¦X,Y,ZåŠ é€Ÿåº¦
+		I2CWrite(I2C_ADDR,SMPLRT_DIV, 0x07);//SMPLRT_DIV æ¡æ¨£ç‡åˆ†é »å¯„å­˜å™¨,è¼¸å…¥æ¡æ¨£æ™‚é˜ç‚ºSMPLRT_DIV kHz,1000/(SMPLRT_DIV+1)
+		I2CWrite(I2C_ADDR,USER_CTRL, 0x00);// åˆå§‹åŒ–I2C
 		I2CWrite(I2C_ADDR,CONFIG, 0x06);
 		I2CWrite(I2C_ADDR,GYRO_CONFIG, 0x10);//0x00=250dps,0x08=500dps,0x10=1000dps,0x18=2000dps
 		I2CWrite(I2C_ADDR,ACCEL_CONFIG, 0x08);//0x00=2g,0x08=4g,0x10=8g,0x18=16g
-		I2CWrite(I2C_ADDR,INT_PIN_CFG,0x02);//¶i¤JBypass¼Ò¦¡¡A¥Î©ó±±¨î¹q¤l«ü«n°w
+		I2CWrite(I2C_ADDR,INT_PIN_CFG,0x02);//é€²å…¥Bypassæ¨¡å¼ï¼Œç”¨æ–¼æ§åˆ¶é›»å­æŒ‡å—é‡
     	return 0;
 	}
 	return 1;
@@ -107,7 +107,7 @@ void Init_AK8963()
 	//DrvSYS_Delay(10000);
 	//I2CWrite(AK8963_I2C_ADDR,AK8963_CNTL1,0x0F);// Enter Fuse ROM access mode
 	//DrvSYS_Delay(10000);
-	//I2CWrite(AK8963_I2C_ADDR,I2C_SLV0_ADDR,0x98);//MAG address 0x18¡Aand Transfer is a read
+	//I2CWrite(AK8963_I2C_ADDR,I2C_SLV0_ADDR,0x98);//MAG address 0x18ï¼Œand Transfer is a read
 	//I2CWrite(AK8963_I2C_ADDR,I2C_SLV0_CTRL,0x81);//Enable reading data from this slave at the sample rate && 1 Byte length
 
     //return 0;
@@ -177,7 +177,6 @@ void MPU6050_value()
 
 void AK8963_value()
 {
-	/*¦¹³B©ñ¸m¤j¶q¨Ä¨Ä «O¦öºÏ¤O­p*/
 	I2CWrite(AK8963_I2C_ADDR,AK8963_CNTL1,0x02);
 	if(I2CRead(AK8963_I2C_ADDR,AK8963_ST1)&0x01)
 	{
@@ -210,5 +209,4 @@ void AK8963_value()
 	    	magZ -= 53000;
 	    }
 	}
-	/*¦¹³B©ñ¸m¤j¶q¨Ä¨Ä «O¦öºÏ¤O­p*/
 }
