@@ -13,3 +13,9 @@
        <li><font size=5>大氣壓(地面高度)晶片(MS5611-01BA01)</font>
 </ul>
 <h3>無線傳輸：CC1101無線模組</h3>
+
+# 硬體外觀
+<h3>飛行器實體圖</h3>
+<img src="https://github.com/ap17884748/Quadcopter/blob/master/file/1.png" width="400">
+<h3>遙控器實體圖</h3>
+<img src="https://github.com/ap17884748/Quadcopter/blob/master/file/2.png" width="400">
